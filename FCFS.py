@@ -1,11 +1,12 @@
 # FCFS CPU Scheduling Algorithm
 
 processes = [
-    ["P1", 3, 3],
-    ["P2", 2, 1],
-    ["P3", 5, 2],
-    ["P4", 0, 3],
-    ["P5", 1, 2]
+    ["P1", 3, 1],
+    ["P2", 2, 4],
+    ["P3", 3, 6],
+    ["P4", 1, 3],
+    ["P5", 4, 2],
+    ["P6", 6, 1]
 ]
 
 # Sort processes according to Arrival Time
@@ -38,7 +39,8 @@ for pid, at, bt in processes:
 
     print(f"{pid}\t{at}\t{bt}\t{ct}\t{tat}\t{wt}")
 
-# Calculate average times
+
+# Calculate averages
 avg_tat = total_tat / len(processes)
 avg_wt = total_wt / len(processes)
 
