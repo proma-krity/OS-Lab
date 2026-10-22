@@ -1,0 +1,32 @@
+pages = list(map(int, input("Enter page reference string: ").split()))
+capacity = int(input("Enter number of frames: "))
+
+frames = []
+last_used = {}
+page_faults = 0
+page_hits = 0
+
+print("\nMRU Page Replacement")
+
+for i, page in enumerate(pages):
+    if page in frames:
+        page_hits += 1
+        status = "Page Hit"
+    else:
+        page_faults += 1
+
+        if len(frames) < capacity:
+            frames.append(page)
+        else:
+            mru_page = max(frames, key=lambda p: last_used[p])
+            frames.remove(mru_page)
+            frames.append(page)
+
+        status = "Page Fault"
+
+    last_used[page] = i
+
+    print(f"Page: {page} | Frames: {frames} | {status}")
+
+print("\nTotal Page Faults:", page_faults)
+print("Total Page Hits:", page_hits)
