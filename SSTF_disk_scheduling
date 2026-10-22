@@ -1,0 +1,21 @@
+requests = list(map(int, input("Enter request: ").split()))
+head = int(input("Enter initial head: "))
+
+total_movement = 0
+pending = requests.copy()
+seek_sequence = [head]
+
+print("Disk Scheduling Algorithm: SSTF")
+
+while pending:
+    request = min(pending, key=lambda x: abs(x - head))
+    movement = abs(request - head)
+    total_movement += movement
+
+    print(f"{head} -> {request} | Movement: {movement}")
+    head = request
+    seek_sequence.append(head)
+    pending.remove(request)
+
+print("Seek Sequence:", " -> ".join(map(str, seek_sequence)))
+print("Total Head Movement:", total_movement)
